@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Hobby - Grade 4</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: #f0f5ff;
+    color: #26345c;
+}
+
+header {
+    background: linear-gradient(135deg,#4936c9,#7765f5,#a18cff);
+    color: white;
+    padding: 35px 15px;
+    text-align: center;
+    border-radius: 0 0 35px 35px;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 43px;
+    margin: 5px;
+    font-weight: 900;
+}
+
+header p {
+    font-size: 18px;
+    margin: 8px;
+}
+
+.ball {
+    font-size: 35px;
+    position: absolute;
+    opacity: .8;
+}
+
+.b1 { left: 8%; top: 20px; }
+.b2 { right: 9%; top: 25px; }
+.b3 { left: 15%; bottom: 12px; }
+.b4 { right: 15%; bottom: 12px; }
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.welcome {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 5px 18px #dce2f5;
+}
+
+.welcome h2 {
+    color: #5945d6;
+    margin-top: 0;
+}
+
+.section-title {
+    font-size: 25px;
+    font-weight: 900;
+    margin: 30px 0 15px;
+    color: #4936c9;
+}
+
+.vocabulary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 15px;
+}
+
+.word-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px #dce2f5;
+    transition: .3s;
+    border-bottom: 5px solid #8977f5;
+}
+
+.word-card:hover {
+    transform: translateY(-5px);
+}
+
+.word-card .emoji {
+    font-size: 42px;
+}
+
+.word-card h3 {
+    color: #5140c9;
+    font-size: 22px;
+    margin: 8px;
+}
+
+.word-card p {
+    margin: 5px;
+    font-size: 15px;
+}
+
+.word-card button {
+    background: #6653e8;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 9px 17px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.word-card button:hover {
+    background: #3e2bb5;
+}
+
+.task {
+    background: white;
+    border-radius: 22px;
+    padding: 23px;
+    margin: 20px 0;
+    box-shadow: 0 5px 18px #dce2f5;
+}
+
+.task h3 {
+    color: #5845d5;
+    margin-top: 0;
+}
+
+.question {
+    background: #f3f1ff;
+    padding: 15px;
+    border-radius: 14px;
+    margin: 12px 0;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.options button {
+    background: white;
+    border: 2px solid #b9afff;
+    color: #4434a7;
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.options button:hover {
+    background: #e8e4ff;
+}
+
+.options button.selected {
+    background: #6653e8;
+    color: white;
+    border-color: #6653e8;
+}
+
+.options button.correct {
+    background: #c8f5d5;
+    color: #176c36;
+    border-color: #55bd78;
+}
+
+.options button.wrong {
+    background: #ffe0e0;
+    color: #a32929;
+    border-color: #ef7777;
+}
+
+.feedback {
+    font-weight: 800;
+    margin-top: 10px;
+    min-height: 22px;
+}
+
+input {
+    padding: 12px;
+    border: 2px solid #b9afff;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    font-family: inherit;
+}
+
+.action {
+    background: linear-gradient(135deg,#5845d5,#927fff);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.action:hover {
+    transform: scale(1.03);
+}
+
+.progress-box {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+    margin-top: 20px;
+}
+
+.progress-bg {
+    background: #e6e3fa;
+    height: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#5a45d6,#a18cff);
+    transition: .4s;
+}
+
+#result {
+    display: none;
+    text-align: center;
+    background: linear-gradient(135deg,#fff4cc,#ffe6a6);
+    border-radius: 25px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+#result h2 {
+    font-size: 30px;
+    color: #8b5a00;
+}
+
+footer {
+    text-align: center;
+    background: #4936c9;
+    color: white;
+    padding: 25px;
+    margin-top: 35px;
+    border-radius: 30px 30px 0 0;
+}
+
+@media(max-width:600px) {
+    header h1 { font-size: 32px; }
+    .container { padding: 12px; }
+    .task { padding: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <span class="ball b1">⚽</span>
+    <span class="ball b2">🏀</span>
+    <span class="ball b3">🏆</span>
+    <span class="ball b4">🎾</span>
+
+    <h1>🏆 MY HOBBY 🏆</h1>
+    <p>Grade 4 | English Fun Learning</p>
+    <p>Let's learn about sports and hobbies!</p>
+</header>
+
+<div class="container">
+
+<div class="welcome">
+    <h2>🌟 Welcome, Young Champions!</h2>
+    <p>Бүгін біз спорт түрлерінің атауларын үйренеміз!</p>
+    <p>📚 Learn • 🔊 Listen • 🎯 Play • 🏆 Win!</p>
+</div>
+
+<div class="progress-box">
+    <b>⭐ Your progress:</b>
+    <p id="progressText">0 / 18 тапсырма орындалды</p>
+    <div class="progress-bg">
+        <div id="progress"></div>
+    </div>
+</div>
+
+<h2 class="section-title">📚 1. NEW WORDS – ЖАҢА СӨЗДЕР</h2>
+
+<div class="vocabulary">
+
+    <div class="word-card">
+        <div class="emoji">🏒</div>
+        <h3>Hockey</h3>
+        <p>🔤 Оқылуы: хокки</p>
+        <p>🇰🇿 Аудармасы: Хоккей</p>
+        <button onclick="speak('Hockey')">🔊 Listen</button>
+    </div>
+
+    <div class="word-card">
+        <div class="emoji">🏸</div>
+        <h3>Badminton</h3>
+        <p>🔤 Оқылуы: бэдминтон</p>
+        <p>🇰🇿 Аудармасы: Бадминтон</p>
+        <button onclick="speak('Badminton')">🔊 Listen</button>
+    </div>
+
+    <div class="word-card">
+        <div class="emoji">⚾</div>
+        <h3>Baseball</h3>
+        <p>🔤 Оқылуы: бейсбол</p>
+        <p>🇰🇿 Аудармасы: Бейсбол</p>
+        <button onclick="speak('Baseball')">🔊 Listen</button>
+    </div>
+
+    <div class="word-card">
+        <div class="emoji">🏓</div>
+        <h3>Table tennis</h3>
+        <p>🔤 Оқылуы: тэйбл тэнис</p>
+        <p>🇰🇿 Аудармасы: Үстел теннисі</p>
+        <button onclick="speak('Table tennis')">🔊 Listen</button>
+    </div>
+
+    <div class="word-card">
+        <div class="emoji">🏀</div>
+        <h3>Basketball</h3>
+        <p>🔤 Оқылуы: баскетбол</p>
+        <p>🇰🇿 Аудармасы: Баскетбол</p>
+        <button onclick="speak('Basketball')">🔊 Listen</button>
+    </div>
+
+    <div class="word-card">
+        <div class="emoji">🏉</div>
+        <h3>Rugby</h3>
+        <p>🔤 Оқылуы: рагби</p>
+        <p>🇰🇿 Аудармасы: Регби</p>
+        <button onclick="speak('Rugby')">🔊 Listen</button>
+    </div>
+
+</div>
+
+<h2 class="section-title">🎯 2. CHOOSE THE CORRECT ANSWER</h2>
+
+<div class="task">
+<h3>Question 1</h3>
+<div class="question">
+    🏀 What is this sport?
+    <div class="options" id="q1">
+        <button onclick="choose(this,'q1','Basketball')">Basketball</button>
+        <button onclick="choose(this,'q1','Hockey')">Hockey</button>
+        <button onclick="choose(this,'q1','Rugby')">Rugby</button>
+    </div>
+    <div class="feedback" id="f-q1"></div>
+</div>
+
+<div class="question">
+    🏸 What is this sport?
+    <div class="options" id="q2">
+        <button onclick="choose(this,'q2','Badminton')">Badminton</button>
+        <button onclick="choose(this,'q2','Baseball')">Baseball</button>
+        <button onclick="choose(this,'q2','Hockey')">Hockey</button>
+    </div>
+    <div class="feedback" id="f-q2"></div>
+</div>
+
+<div class="question">
+    🏒 What is this sport?
+    <div class="options" id="q3">
+        <button onclick="choose(this,'q3','Hockey')">Hockey</button>
+        <button onclick="choose(this,'q3','Rugby')">Rugby</button>
+        <button onclick="choose(this,'q3','Basketball')">Basketball</button>
+    </div>
+    <div class="feedback" id="f-q3"></div>
+</div>
+
+<div class="question">
+    🏓 What is this sport?
+    <div class="options" id="q4">
+        <button onclick="choose(this,'q4','Baseball')">Baseball</button>
+        <button onclick="choose(this,'q4','Table tennis')">Table tennis</button>
+        <button onclick="choose(this,'q4','Rugby')">Rugby</button>
+    </div>
+    <div class="feedback" id="f-q4"></div>
+</div>
+
+<div class="question">
+    ⚾ What is this sport?
+    <div class="options" id="q5">
+        <button onclick="choose(this,'q5','Hockey')">Hockey</button>
+        <button onclick="choose(this,'q5','Baseball')">Baseball</button>
+        <button onclick="choose(this,'q5','Badminton')">Badminton</button>
+    </div>
+    <div class="feedback" id="f-q5"></div>
+</div>
+
+<div class="question">
+    🏉 What is this sport?
+    <div class="options" id="q6">
+        <button onclick="choose(this,'q6','Rugby')">Rugby</button>
+        <button onclick="choose(this,'q6','Basketball')">Basketball</button>
+        <button onclick="choose(this,'q6','Table tennis')">Table tennis</button>
+    </div>
+    <div class="feedback" id="f-q6"></div>
+</div>
+</div>
+
+<h2 class="section-title">🧩 3. MATCH THE WORDS</h2>
+
+<div class="task">
+<h3>Choose the correct translation!</h3>
+
+<div id="matchQuestions"></div>
+</div>
+
+<h2 class="section-title">✍️ 4. COMPLETE THE SENTENCES</h2>
+
+<div class="task">
+
+<div class="question">
+    1. I like ______. 🏀
+    <br><br>
+    <input id="fill1" placeholder="Write the sport">
+    <div class="feedback" id="f-fill1"></div>
+</div>
+
+<div class="question">
+    2. I like ______. 🏸
+    <br><br>
+    <input id="fill2" placeholder="Write the sport">
+    <div class="feedback" id="f-fill2"></div>
+</div>
+
+<div class="question">
+    3. I like ______. 🏓
+    <br><br>
+    <input id="fill3" placeholder="Write the sport">
+    <div class="feedback" id="f-fill3"></div>
+</div>
+
+<button class="action" onclick="checkFill()">✅ Check answers</button>
+</div>
+
+<h2 class="section-title">💬 5. MY HOBBY</h2>
+
+<div class="task">
+    <h3>Read and learn!</h3>
+
+    <div class="question">
+        <p>👦 My hobby is basketball.</p>
+        <p>👧 I like badminton.</p>
+        <p>⚽ My favourite sport is hockey.</p>
+        <p>🏆 I love sports!</p>
+    </div>
+
+    <p><b>Now choose the correct answer:</b></p>
+
+    <div class="question">
+        What does "I like basketball" mean?
+        <div class="options" id="q7">
+            <button onclick="choose(this,'q7','Мен баскетболды ұнатамын')">Мен баскетболды ұнатамын</button>
+            <button onclick="choose(this,'q7','Мен хоккейді ұнатамын')">Мен хоккейді ұнатамын</button>
+        </div>
+        <div class="feedback" id="f-q7"></div>
+    </div>
+
+    <div class="question">
+        What does "My hobby is badminton" mean?
+        <div class="options" id="q8">
+            <button onclick="choose(this,'q8','Менің хоббиім – бадминтон')">Менің хоббиім – бадминтон</button>
+            <button onclick="choose(this,'q8','Менің хоббиім – регби')">Менің хоббиім – регби</button>
+        </div>
+        <div class="feedback" id="f-q8"></div>
+    </div>
+
+    <div class="question">
+        What does "I love sports" mean?
+        <div class="options" id="q9">
+            <button onclick="choose(this,'q9','Мен спортты жақсы көремін')">Мен спортты жақсы көремін</button>
+            <button onclick="choose(this,'q9','Мен кітап оқимын')">Мен кітап оқимын</button>
+        </div>
+        <div class="feedback" id="f-q9"></div>
+    </div>
+</div>
+
+<div id="result">
+    <h2>🏆 WELL DONE! 🏆</h2>
+    <p id="resultText"></p>
+    <div style="font-size:55px">🥇⭐🎉</div>
+    <button class="action" onclick="restart()">🔄 Try again</button>
+</div>
+
+<div style="text-align:center">
+    <button class="action" onclick="showResult()">🏆 SEE MY RESULT</button>
+</div>
+
+</div>
+
+<footer>
+    <h2>🌟 YOU ARE A CHAMPION! 🌟</h2>
+    <p>Learn English • Enjoy Sports • Have Fun!</p>
+    <p>MY HOBBY | GRADE 4</p>
+</footer>
+
+<script>
+
+let answers = {
+    q1:"Basketball",
+    q2:"Badminton",
+    q3:"Hockey",
+    q4:"Table tennis",
+    q5:"Baseball",
+    q6:"Rugby",
+    q7:"Мен баскетболды ұнатамын",
+    q8:"Менің хоббиім – бадминтон",
+    q9:"Мен спортты жақсы көремін"
+};
+
+let completed = {};
+let score = 0;
+
+function speak(word) {
+    if (!('speechSynthesis' in window)) {
+        alert("Your browser does not support speech.");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    let speech = new SpeechSynthesisUtterance(word);
+    speech.lang = "en-US";
+    speech.rate = 0.8;
+    speech.pitch = 1;
+
+    speechSynthesis.speak(speech);
+}
+
+function choose(button,id,value) {
+
+    if (completed[id]) return;
+
+    let correct = answers[id];
+
+    let buttons = document.querySelectorAll("#"+id+" button");
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (value === correct) {
+        button.classList.add("correct");
+        document.getElementById("f-"+id).innerHTML = "✅ Correct! Well done!";
+        score++;
+    } else {
+        button.classList.add("wrong");
+        buttons.forEach(btn => {
+            if(btn.innerText === correct) {
+                btn.classList.add("correct");
+            }
+        });
+        document.getElementById("f-"+id).innerHTML = "❌ Correct answer: "+correct;
+    }
+
+    completed[id] = true;
+    updateProgress();
+}
+
+const matching = [
+    ["Hockey","Хоккей"],
+    ["Badminton","Бадминтон"],
+    ["Baseball","Бейсбол"],
+    ["Table tennis","Үстел теннисі"],
+    ["Basketball","Баскетбол"],
+    ["Rugby","Регби"]
+];
+
+let matchContainer = document.getElementById("matchQuestions");
+
+matching.forEach((item,index) => {
+
+    let div = document.createElement("div");
+    div.className = "question";
+
+    div.innerHTML = `
+        <b>${index+1}. ${item[0]}</b><br><br>
+        <select id="match${index}" style="padding:12px;border-radius:10px;border:2px solid #b9afff;font-size:15px">
+            <option value="">Choose translation</option>
+            <option>Хоккей</option>
+            <option>Бадминтон</option>
+            <option>Бейсбол</option>
+            <option>Үстел теннисі</option>
+            <option>Баскетбол</option>
+            <option>Регби</option>
+        </select>
+        <div class="feedback" id="f-match${index}"></div>
+    `;
+
+    matchContainer.appendChild(div);
+});
+
+let matchChecked = false;
+
+let originalCheckFill = false;
+
+function checkFill() {
+
+    if (originalCheckFill) return;
+
+    let fillAnswers = [
+        ["fill1","basketball"],
+        ["fill2","badminton"],
+        ["fill3","table tennis"]
+    ];
+
+    fillAnswers.forEach(item => {
+
+        let input = document.getElementById(item[0]);
+        let value = input.value.trim().toLowerCase();
+        let feedback = document.getElementById("f-"+item[0]);
+
+        input.disabled = true;
+
+        if(value === item[1]) {
+            feedback.innerHTML = "✅ Correct!";
+            score++;
+        } else {
+            feedback.innerHTML = "❌ Correct answer: "+item[1];
+        }
+    });
+
+    originalCheckFill = true;
+    completed.fill = true;
+    updateProgress();
+}
+
+function checkMatching() {
+
+    if(matchChecked) return;
+
+    matching.forEach((item,index) => {
+
+        let select = document.getElementById("match"+index);
+        let feedback = document.getElementById("f-match"+index);
+
+        select.disabled = true;
+
+        if(select.value === item[1]) {
+            feedback.innerHTML = "✅ Correct!";
+            score++;
+        } else {
+            feedback.innerHTML = "❌ Correct: "+item[1];
+        }
+    });
+
+    matchChecked = true;
+    completed.match = true;
+    updateProgress();
+}
+
+// Add matching check button
+let matchButton = document.createElement("button");
+matchButton.className = "action";
+matchButton.innerText = "✅ Check matching";
+matchButton.onclick = checkMatching;
+matchContainer.parentElement.appendChild(matchButton);
+
+function updateProgress() {
+
+    let total = 17;
+
+    let done = Object.keys(completed).reduce((sum,key) => {
+        if(key === "fill") return sum + 3;
+        if(key === "match") return sum + 6;
+        return sum + 1;
+    },0);
+
+    document.getElementById("progress").style.width =
+        (done/total*100)+"%";
+
+    document.getElementById("progressText").innerText =
+        done+" / "+total+" тапсырма орындалды";
+}
+
+function showResult() {
+
+    if(!completed.match || !completed.fill) {
+        alert("Алдымен барлық тапсырманы орында!");
+        return;
+    }
+
+    for(let i=1;i<=9;i++) {
+        if(!completed["q"+i]) {
+            alert("Алдымен барлық тапсырманы орында!");
+            return;
+        }
+    }
+
+    let total = 18;
+    let percent = Math.round(score/total*100);
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("resultText").innerHTML =
+        "Your score: <b>"+score+" / "+total+"</b><br>"+
+        "Result: <b>"+percent+"%</b><br><br>"+
+        (percent >= 85 ? "Excellent! 🌟" :
+        percent >= 60 ? "Good job! 👏" :
+        "Keep practising! 💪");
+
+    document.getElementById("result").scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function restart() {
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>
